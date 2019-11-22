@@ -16,7 +16,7 @@ namespace The_Snake_Advanced
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmMain());
         }
     }
 }

@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace The_Snake_Advanced
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
-        public Form1()
+        //Constructor Form frmMain
+        public frmMain()
         {
             InitializeComponent();
         }
+
     }
 }
