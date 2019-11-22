@@ -1,6 +1,6 @@
 ﻿namespace The_Snake_Advanced
 {
-    partial class frmMain
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.panelSetting = new System.Windows.Forms.Panel();
+            this.btnPlay = new System.Windows.Forms.Button();
             this.coBoxLaw = new System.Windows.Forms.ComboBox();
             this.coBoxSnakeColor = new System.Windows.Forms.ComboBox();
             this.coBoxBackGroundColor = new System.Windows.Forms.ComboBox();
+            this.chBoxFoodShiftSpeed = new System.Windows.Forms.CheckBox();
             this.chBoxWall = new System.Windows.Forms.CheckBox();
             this.lblLaw = new System.Windows.Forms.Label();
             this.lblSnakeSize = new System.Windows.Forms.Label();
@@ -52,9 +54,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnPlay = new System.Windows.Forms.Button();
             this.progressBarLevel = new System.Windows.Forms.ProgressBar();
-            this.chBoxFoodShiftSpeed = new System.Windows.Forms.CheckBox();
             this.panelSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trBarFoodShiftSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarFoodSize)).BeginInit();
@@ -90,6 +90,16 @@
             this.panelSetting.Size = new System.Drawing.Size(200, 576);
             this.panelSetting.TabIndex = 0;
             // 
+            // btnPlay
+            // 
+            this.btnPlay.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlay.Location = new System.Drawing.Point(3, 240);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(194, 31);
+            this.btnPlay.TabIndex = 3;
+            this.btnPlay.Text = "Play";
+            this.btnPlay.UseVisualStyleBackColor = true;
+            // 
             // coBoxLaw
             // 
             this.coBoxLaw.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
@@ -116,6 +126,16 @@
             this.coBoxBackGroundColor.Name = "coBoxBackGroundColor";
             this.coBoxBackGroundColor.Size = new System.Drawing.Size(194, 34);
             this.coBoxBackGroundColor.TabIndex = 6;
+            // 
+            // chBoxFoodShiftSpeed
+            // 
+            this.chBoxFoodShiftSpeed.AutoSize = true;
+            this.chBoxFoodShiftSpeed.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
+            this.chBoxFoodShiftSpeed.Location = new System.Drawing.Point(173, 530);
+            this.chBoxFoodShiftSpeed.Name = "chBoxFoodShiftSpeed";
+            this.chBoxFoodShiftSpeed.Size = new System.Drawing.Size(15, 14);
+            this.chBoxFoodShiftSpeed.TabIndex = 5;
+            this.chBoxFoodShiftSpeed.UseVisualStyleBackColor = true;
             // 
             // chBoxWall
             // 
@@ -256,6 +276,7 @@
             this.playStopToolStripMenuItem.Name = "playStopToolStripMenuItem";
             this.playStopToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.playStopToolStripMenuItem.Text = "PlayAgain";
+            this.playStopToolStripMenuItem.Click += new System.EventHandler(this.PlayStopToolStripMenuItem_Click);
             // 
             // settingToolStripMenuItem
             // 
@@ -276,18 +297,18 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(104, 6);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // exitToolStripMenuItem
@@ -295,16 +316,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // btnPlay
-            // 
-            this.btnPlay.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlay.Location = new System.Drawing.Point(3, 240);
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(194, 31);
-            this.btnPlay.TabIndex = 3;
-            this.btnPlay.Text = "Play";
-            this.btnPlay.UseVisualStyleBackColor = true;
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // progressBarLevel
             // 
@@ -313,17 +325,7 @@
             this.progressBarLevel.Size = new System.Drawing.Size(677, 24);
             this.progressBarLevel.TabIndex = 4;
             // 
-            // chBoxFoodShiftSpeed
-            // 
-            this.chBoxFoodShiftSpeed.AutoSize = true;
-            this.chBoxFoodShiftSpeed.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
-            this.chBoxFoodShiftSpeed.Location = new System.Drawing.Point(173, 530);
-            this.chBoxFoodShiftSpeed.Name = "chBoxFoodShiftSpeed";
-            this.chBoxFoodShiftSpeed.Size = new System.Drawing.Size(15, 14);
-            this.chBoxFoodShiftSpeed.TabIndex = 5;
-            this.chBoxFoodShiftSpeed.UseVisualStyleBackColor = true;
-            // 
-            // frmMain
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -334,7 +336,7 @@
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.menuStrip;
-            this.Name = "frmMain";
+            this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "The Snake";
             this.panelSetting.ResumeLayout(false);
