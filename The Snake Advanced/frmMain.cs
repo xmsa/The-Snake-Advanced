@@ -8,7 +8,7 @@ namespace The_Snake_Advanced
     {
         FrmHome frmHome;
         public enum laws { Overfly, CuttingSnake, NoCuttingSnake, ReturnOnSnake }
-        public laws law { get; set; }
+        laws law { get; set; }
         public bool gameOver { get; set; }
 
         //Constructor Form frmMain
@@ -20,7 +20,7 @@ namespace The_Snake_Advanced
             frmHome.playAgain = false;
             this.frmHome = frmHome;
             gameOver = false;
-            CSnake s = new CSnake(this, new Point(50, 50), new Size(20, 20), Color.Black, Keys.Right);
+            CSnake n = new CSnake(this, new Point(50, 50), new Size(10, 10), Color.Green, Keys.Right);
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)

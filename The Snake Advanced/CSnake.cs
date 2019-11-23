@@ -31,13 +31,30 @@ namespace The_Snake_Advanced
             this.color = color;
             this.key = key;
             body = new List<PictureBox>();
-            AddBody();
+            AddBody(FrmMain.laws.Overfly);
         }
 
-        private void AddBody()
+        private void MoveSnake(FrmMain.laws law)
+        {
+            AddBody(law);
+
+            if (frmMain.gameOver)
+                return;
+
+            frmMain.Controls.Remove(body[0]);
+
+            body.RemoveAt(0);
+
+            if (body.Count != 0)
+            {
+                body[body.Count - 1].BackColor = Color.Red;
+            }
+        }
+
+        public void AddBody(FrmMain.laws law)
         {
 
-            _locationHead = SetLocationHead();
+            _locationHead = SetLocationHead(law);
 
             LowWall(_locationHead);
 
@@ -50,7 +67,7 @@ namespace The_Snake_Advanced
             tail.Size = size;
             tail.BackColor = Color.Red;
             tail.Location = locationHead;
-            if (body.Count>0)
+            if (body.Count != 0)
             {
                 body[body.Count - 1].BackColor = color;
             }
@@ -58,11 +75,11 @@ namespace The_Snake_Advanced
             frmMain.Controls.Add(tail);
         }
 
-        private Point SetLocationHead()
+        private Point SetLocationHead(FrmMain.laws law)
         {
             Point location = locationHead;
 
-            switch (frmMain.law)
+            switch (law)
             {
                 case FrmMain.laws.Overfly:
                     location = LowOverfly(location);
@@ -85,7 +102,7 @@ namespace The_Snake_Advanced
             location = LowOverfly(location);
             if ((location.X < 0) ||
                 (location.Y < frmMain.Height) ||
-                (location.X < frmMain.Width)||
+                (location.X < frmMain.Width) ||
                 (location.Y < 0))
             {
                 key = SwitchKey(key);
@@ -113,8 +130,8 @@ namespace The_Snake_Advanced
         private Point LowNoCuttingSnake(Point location)
         {
             location = LowOverfly(location);
-            int indexBody= Colision(location);
-            if (indexBody<0)
+            int indexBody = Colision(location);
+            if (indexBody < 0)
             {
                 frmMain.gameOver = true;
             }
@@ -125,7 +142,7 @@ namespace The_Snake_Advanced
         {
             for (int i = body.Count - 2; i >= 0; i--)
             {
-                if (location== body[i].Location)
+                if (location == body[i].Location)
                 {
                     return i;
                 }
@@ -140,7 +157,7 @@ namespace The_Snake_Advanced
                 (location.X > frmMain.Width) ||
                 (location.Y < 0))
             {
-                frmMain.gameOver=true;
+                frmMain.gameOver = true;
             }
         }
 
@@ -150,7 +167,7 @@ namespace The_Snake_Advanced
             int indexBody = Colision(location);
             if (indexBody < 0)
             {
-                for (int i = indexBody; i >=0; i++)
+                for (int i = indexBody; i >= 0; i++)
                 {
                     frmMain.Controls.Remove(body[i]);
                     body.RemoveAt(i);
