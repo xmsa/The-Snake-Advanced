@@ -30,15 +30,18 @@ namespace The_Snake_Advanced
             coBoxBackGroundColor.SelectedIndex = 0;
             bodyColor = Color.Green;
             this.BackColor = Color.DarkRed;
-            menuStrip.Enabled = false;
+
+            playAgainToolStripMenuItem.Enabled = false;
+            settingToolStripMenuItem.Enabled = false;
+
+
             timerShiftStarFood.Interval = 1000;
             counterStarFood = counterStarFood + 1;
             snake = new CSnake(this, new Point(300, 300),
                 new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5
                 ), Color.Red, Keys.Right);
             food = new CFood(this, new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5));
-            sFood = new CFood(this, new Size(snake.size.Width*2,snake.size.Height*2), true);
-            
+            sFood = new CFood(this, new Size(snake.size.Width * 2, snake.size.Height * 2), true);
 
         }
 
@@ -62,7 +65,7 @@ namespace The_Snake_Advanced
             {
                 snake.AddBody(law);
                 food.RandomLocation();
-                addLevel= progressBarLevel.Value + 5;
+                addLevel = progressBarLevel.Value + 5;
             }
             if (snake.EatFood(sFood.location, true))
             {
@@ -79,7 +82,7 @@ namespace The_Snake_Advanced
                 frmHome.playAgain = true;
                 this.Close();
             }
-            if (addLevel>0 && addLevel < 100)
+            if (addLevel > 0 && addLevel < 100)
             {
                 progressBarLevel.Value = addLevel;
             }
@@ -104,7 +107,8 @@ namespace The_Snake_Advanced
             law = (laws)coBoxLaw.SelectedIndex;
 
             panelSetting.Visible = false;
-            menuStrip.Enabled = true;
+            playAgainToolStripMenuItem.Enabled = true;
+            settingToolStripMenuItem.Enabled = true;
 
             timerMoveSnake.Interval = 250 - (trBarSnakeSpeed.Value * 40);
             timerShiftFood.Interval = trBarSnakeSpeed.Value * 2000;
@@ -164,8 +168,8 @@ namespace The_Snake_Advanced
         private void TrBarSnakeSize_ValueChanged(object sender, EventArgs e)
         {
             snake.size = new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5);
-            food.size =  new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5);
-            sFood.size = new Size (snake.size.Width*2, snake.size.Height*2);
+            food.size = new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5);
+            sFood.size = new Size(snake.size.Width * 2, snake.size.Height * 2);
             sFood.RandomLocation();
             food.RandomLocation();
 
@@ -201,13 +205,33 @@ namespace The_Snake_Advanced
         private void SettingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panelSetting.Visible = true;
-            menuStrip.Enabled = false;
 
+            playAgainToolStripMenuItem.Enabled = false;
+            settingToolStripMenuItem.Enabled = false;
 
             timerShiftFood.Enabled = false;
             timerShiftStarFood.Enabled = false;
             timerMoveSnake.Enabled = false;
             btnPlay.Focus();
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool flag1 = timerMoveSnake.Enabled;
+            bool flag2 = timerShiftFood.Enabled;
+            bool flag3 = timerShiftStarFood.Enabled;
+
+
+            timerMoveSnake.Stop();
+            timerShiftFood.Stop();
+            timerShiftStarFood.Stop();
+            new FrmAbout().ShowDialog();
+            if (flag1)
+                timerMoveSnake.Start();
+            if (flag2)
+                timerShiftFood.Start();
+            if (flag3)
+                timerShiftStarFood.Start();
         }
     }
 }
