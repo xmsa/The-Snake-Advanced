@@ -133,6 +133,7 @@
             this.coBoxSnakeColor.Name = "coBoxSnakeColor";
             this.coBoxSnakeColor.Size = new System.Drawing.Size(194, 34);
             this.coBoxSnakeColor.TabIndex = 7;
+            this.coBoxSnakeColor.SelectedIndexChanged += new System.EventHandler(this.CoBoxSnakeColor_SelectedIndexChanged);
             // 
             // coBoxBackGroundColor
             // 

@@ -31,7 +31,7 @@ namespace The_Snake_Advanced
             menuStrip.Enabled = false;
             timerShiftStarFood.Interval = 1000;
             counterStarFood = counterStarFood + 1;
-            snake = new CSnake(this, new Point(50, 50), new Size(10, 10), Color.Green, Keys.Right);
+            snake = new CSnake(this, new Point(50, 50), new Size(10, 10), Color.Red, Keys.Right);
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -92,6 +92,32 @@ namespace The_Snake_Advanced
                 case "Green":
                     BackColor = Color.DarkGreen;
                     break;
+            }
+        }
+
+        private void CoBoxSnakeColor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Color color=Color.White;
+            switch (coBoxSnakeColor.SelectedItem)
+            {
+                case "Red":
+                    color = Color.Red;
+                    break;
+                case "Blue":
+                    color = Color.Blue;
+                    break;
+                case "Green":
+                    color = Color.Green;
+                    break;
+            }
+            try
+            {
+                snake.SetColorBody(color);
+
+            }
+            catch (Exception)
+            {
+
             }
         }
     }

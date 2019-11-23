@@ -47,7 +47,7 @@ namespace The_Snake_Advanced
 
             if (body.Count != 0)
             {
-                body[body.Count - 1].BackColor = Color.Red;
+                body[body.Count - 1].BackColor = Color.Gray;
             }
         }
 
@@ -65,7 +65,7 @@ namespace The_Snake_Advanced
 
             PictureBox tail = new PictureBox();
             tail.Size = size;
-            tail.BackColor = Color.Red;
+            tail.BackColor = Color.Gray;
             tail.Location = locationHead;
             if (body.Count != 0)
             {
@@ -194,6 +194,14 @@ namespace The_Snake_Advanced
                     break;
             }
             return location;
+        }
+        public void SetColorBody(Color color)
+        {
+            this.color = color;
+            for (int i = 0; i < body.Count-1; i++)
+            {
+                body[i].BackColor = color;
+            }
         }
     }
 }
