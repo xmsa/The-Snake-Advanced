@@ -26,6 +26,17 @@ namespace The_Snake_Advanced
                 food.Size = value;
             }
         }
+        public bool visible
+        {
+            get
+            {
+                return food.Visible;
+            }
+            set
+            {
+                food.Visible = value;
+            }
+        }
         public Point location { get { return food.Location; } }
         public bool sFood { get; set; }
 
@@ -87,5 +98,6 @@ namespace The_Snake_Advanced
             }
             food.Location = new Point(width * size.Width, height * size.Height);
         }
+
     }
 }

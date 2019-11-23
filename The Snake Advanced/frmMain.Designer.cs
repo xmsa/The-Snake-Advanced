@@ -331,6 +331,14 @@
             // 
             this.timerMoveSnake.Tick += new System.EventHandler(this.TimerMoveSnake_Tick);
             // 
+            // timerShiftFood
+            // 
+            this.timerShiftFood.Tick += new System.EventHandler(this.TimerShiftFood_Tick);
+            // 
+            // timerShiftStarFood
+            // 
+            this.timerShiftStarFood.Tick += new System.EventHandler(this.TimerShiftStarFood_Tick);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

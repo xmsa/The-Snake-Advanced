@@ -67,13 +67,17 @@ namespace The_Snake_Advanced
                 food.RandomLocation();
                 addLevel = progressBarLevel.Value + 5;
             }
-            if (snake.EatFood(sFood.location, true))
+            if (sFood.visible)
             {
-                snake.AddBody(law);
-                snake.AddBody(law);
-                sFood.RandomLocation();
-                addLevel = progressBarLevel.Value + 10;
-
+                if (snake.EatFood(sFood.location, true))
+                {
+                    snake.AddBody(law);
+                    snake.AddBody(law);
+                    sFood.RandomLocation();
+                    sFood.visible = !sFood.visible;
+                    addLevel = progressBarLevel.Value + 10;
+                    counterStarFood = number.one;
+                }
             }
             if (addLevel >= 100)
             {
@@ -232,6 +236,34 @@ namespace The_Snake_Advanced
                 timerShiftFood.Start();
             if (flag3)
                 timerShiftStarFood.Start();
+        }
+
+        private void TimerShiftFood_Tick(object sender, EventArgs e)
+        {
+            food.RandomLocation();
+        }
+
+        private void TimerShiftStarFood_Tick(object sender, EventArgs e)
+        {
+            
+            if (counterStarFood==number.zero)
+            {
+                sFood.visible = true;
+                timerShiftStarFood.Stop();
+                timerShiftStarFood.Start();
+            }
+            else if (counterStarFood==number.five && sFood.visible == true)
+            {
+                sFood.visible = false;
+                counterStarFood=number.zero;
+
+            }
+            counterStarFood++;
+            if ((int)counterStarFood == 10)
+            {
+                counterStarFood = number.zero;
+            }
+
         }
     }
 }
