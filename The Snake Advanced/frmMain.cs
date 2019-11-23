@@ -51,11 +51,38 @@ namespace The_Snake_Advanced
         private void PlayStopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmHome.playAgain = true;
+            this.Close();
         }
 
         private void TimerMoveSnake_Tick(object sender, EventArgs e)
         {
             snake.MoveSnake(law, chBoxWall.Checked);
+            int addLevel = 0;
+            if (snake.EatFood(food.location))
+            {
+                snake.AddBody(law);
+                food.RandomLocation();
+                addLevel= progressBarLevel.Value + 5;
+            }
+            if (snake.EatFood(sFood.location, true))
+            {
+                snake.AddBody(law);
+                snake.AddBody(law);
+                sFood.RandomLocation();
+                addLevel = progressBarLevel.Value + 10;
+
+            }
+            if (addLevel >= 100)
+            {
+                progressBarLevel.Value = 100;
+                MessageBox.Show("Finishing");
+                frmHome.playAgain = true;
+                this.Close();
+            }
+            if (addLevel>0 && addLevel < 100)
+            {
+                progressBarLevel.Value = addLevel;
+            }
             if (gameOver)
             {
                 timerMoveSnake.Enabled = false;
@@ -137,16 +164,11 @@ namespace The_Snake_Advanced
         private void TrBarSnakeSize_ValueChanged(object sender, EventArgs e)
         {
             snake.size = new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5);
+            food.size =  new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5);
             sFood.size = new Size (snake.size.Width*2, snake.size.Height*2);
             sFood.RandomLocation();
-
-        }
-
-        private void TrBarFoodSize_ValueChanged(object sender, EventArgs e)
-        {
-            //food.size= new Size((trBarFoodSize.Value + 1) * 5, (trBarFoodSize.Value + 1) * 5);
-            food.size = snake.size;
             food.RandomLocation();
+
         }
 
         private void FrmMain_KeyDown(object sender, KeyEventArgs e)
@@ -174,6 +196,18 @@ namespace The_Snake_Advanced
                     snake.key = (snake.key != Keys.Left) ? Keys.Right : Keys.Left;
                     break;
             }
+        }
+
+        private void SettingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelSetting.Visible = true;
+            menuStrip.Enabled = false;
+
+
+            timerShiftFood.Enabled = false;
+            timerShiftStarFood.Enabled = false;
+            timerMoveSnake.Enabled = false;
+            btnPlay.Focus();
         }
     }
 }

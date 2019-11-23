@@ -283,6 +283,7 @@
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.settingToolStripMenuItem.Text = "Setting";
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.SettingToolStripMenuItem_Click);
             // 
             // eboutToolStripMenuItem
             // 
@@ -379,12 +380,12 @@
         private System.Windows.Forms.Label lblSnakeColor;
         private System.Windows.Forms.Label lblFoodShiftSpeed;
         private System.Windows.Forms.Button btnPlay;
-        private System.Windows.Forms.ProgressBar progressBarLevel;
         private System.Windows.Forms.CheckBox chBoxFoodShiftSpeed;
         private System.Windows.Forms.Timer timerMoveSnake;
         private System.Windows.Forms.ComboBox coBoxLaw;
         private System.Windows.Forms.Timer timerShiftFood;
         private System.Windows.Forms.Timer timerShiftStarFood;
+        public System.Windows.Forms.ProgressBar progressBarLevel;
     }
 }
 

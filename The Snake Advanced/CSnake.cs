@@ -72,9 +72,6 @@ namespace The_Snake_Advanced
             this.color = color;
             this.key = key;
             AddBody(FrmMain.laws.Overfly);
-            AddBody(FrmMain.laws.Overfly);
-            AddBody(FrmMain.laws.Overfly);
-            AddBody(FrmMain.laws.Overfly);
         }
 
         public void MoveSnake(FrmMain.laws law, bool wall = false)
@@ -131,12 +128,15 @@ namespace The_Snake_Advanced
                     break;
                 case FrmMain.laws.CuttingSnake:
                     location = LowCuttingSnake(location);
+                    location = LowOverfly(location);
                     break;
                 case FrmMain.laws.NoCuttingSnake:
                     location = LowNoCuttingSnake(location);
+                    location = LowOverfly(location);
                     break;
                 case FrmMain.laws.ReturnOnSnake:
                     location = LowReturnOnSnake(location);
+                    location = NextLocation(locationHead);
                     break;
             }
             return location;
@@ -145,8 +145,8 @@ namespace The_Snake_Advanced
         private Point LowReturnOnSnake(Point location)
         {
             if ((location.X < 0) ||
-                (location.Y < frmMain.Height) ||
-                (location.X < frmMain.Width) ||
+                (location.Y > frmMain.Height) ||
+                (location.X > frmMain.Width) ||
                 (location.Y < 0))
             {
                 key = SwitchKey(key);
@@ -174,7 +174,7 @@ namespace The_Snake_Advanced
         private Point LowNoCuttingSnake(Point location)
         {
             int indexBody = Colision(location);
-            if (indexBody < 0)
+            if (indexBody > 0)
             {
                 frmMain.gameOver = true;
             }
@@ -207,13 +207,14 @@ namespace The_Snake_Advanced
         private Point LowCuttingSnake(Point location)
         {
             int indexBody = Colision(location);
-            if (indexBody < 0)
+            if (indexBody > 0)
             {
-                for (int i = indexBody; i >= 0; i++)
+                for (int i = indexBody; i >= 0; i--)
                 {
                     frmMain.Controls.Remove(body[i]);
                     body.RemoveAt(i);
                 }
+                frmMain.progressBarLevel.Value = 0;
             }
             return location;
         }
@@ -257,6 +258,25 @@ namespace The_Snake_Advanced
                 location.Y = frmMain.Height - size.Height;
             }
             return location;
+        }
+
+        public bool EatFood(Point foodLocation, bool sFood=false)
+        {
+            Point _pointHead1 = new Point(_locationHead.X,_locationHead.Y);
+            Point _pointHead2 = new Point(_locationHead.X-size.Width,_locationHead.Y);
+            Point _pointHead3 = new Point(_locationHead.X, _locationHead.Y - (size.Height));
+            Point _pointHead4 = new Point(_locationHead.X - (size.Width),_locationHead.Y-size.Height);
+            
+
+            if (foodLocation == _pointHead1)
+            {
+                return true;
+            }
+            if (sFood&&(foodLocation == _pointHead1|| foodLocation == _pointHead3 || foodLocation == _pointHead4))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
