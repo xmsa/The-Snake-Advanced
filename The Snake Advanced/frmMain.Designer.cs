@@ -126,9 +126,9 @@
             this.coBoxSnakeColor.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
             this.coBoxSnakeColor.FormattingEnabled = true;
             this.coBoxSnakeColor.Items.AddRange(new object[] {
-            "Green",
             "Red",
-            "Blue"});
+            "Blue",
+            "Green"});
             this.coBoxSnakeColor.Location = new System.Drawing.Point(3, 98);
             this.coBoxSnakeColor.Name = "coBoxSnakeColor";
             this.coBoxSnakeColor.Size = new System.Drawing.Size(194, 34);
@@ -147,6 +147,7 @@
             this.coBoxBackGroundColor.Name = "coBoxBackGroundColor";
             this.coBoxBackGroundColor.Size = new System.Drawing.Size(194, 34);
             this.coBoxBackGroundColor.TabIndex = 6;
+            this.coBoxBackGroundColor.SelectedIndexChanged += new System.EventHandler(this.CoBoxBackGroundColor_SelectedIndexChanged);
             // 
             // chBoxFoodShiftSpeed
             // 

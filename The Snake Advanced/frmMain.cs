@@ -27,7 +27,7 @@ namespace The_Snake_Advanced
             coBoxSnakeColor.SelectedIndex = 0;
             coBoxBackGroundColor.SelectedIndex = 0;
             bodyColor=Color.Green;
-            this.BackColor=Color.LightGreen;
+            this.BackColor=Color.DarkRed;
             menuStrip.Enabled = false;
             timerShiftStarFood.Interval = 1000;
             counterStarFood = counterStarFood + 1;
@@ -77,6 +77,22 @@ namespace The_Snake_Advanced
             timerShiftFood.Enabled = !chBoxWall.Checked;
             timerShiftStarFood.Enabled = true;
             timerMoveSnake.Enabled = true;
+        }
+
+        private void CoBoxBackGroundColor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (coBoxBackGroundColor.SelectedItem)
+            {
+                case "Red":
+                    BackColor = Color.DarkRed;
+                    break;
+                case "Blue":
+                    BackColor = Color.DarkBlue;
+                    break;
+                case "Green":
+                    BackColor = Color.DarkGreen;
+                    break;
+            }
         }
     }
 }
