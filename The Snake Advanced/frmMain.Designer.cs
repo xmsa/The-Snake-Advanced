@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelSetting = new System.Windows.Forms.Panel();
             this.btnPlay = new System.Windows.Forms.Button();
             this.coBoxLaw = new System.Windows.Forms.ComboBox();
@@ -55,6 +56,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBarLevel = new System.Windows.Forms.ProgressBar();
+            this.timerMoveSnake = new System.Windows.Forms.Timer(this.components);
             this.panelSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trBarFoodShiftSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarFoodSize)).BeginInit();
@@ -325,6 +327,10 @@
             this.progressBarLevel.Size = new System.Drawing.Size(677, 24);
             this.progressBarLevel.TabIndex = 4;
             // 
+            // timerMoveSnake
+            // 
+            this.timerMoveSnake.Tick += new System.EventHandler(this.TimerMoveSnake_Tick);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,6 +386,7 @@
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.ProgressBar progressBarLevel;
         private System.Windows.Forms.CheckBox chBoxFoodShiftSpeed;
+        private System.Windows.Forms.Timer timerMoveSnake;
     }
 }
 

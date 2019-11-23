@@ -34,7 +34,7 @@ namespace The_Snake_Advanced
             AddBody(FrmMain.laws.Overfly);
         }
 
-        private void MoveSnake(FrmMain.laws law)
+        public void MoveSnake(FrmMain.laws law)
         {
             AddBody(law);
 
