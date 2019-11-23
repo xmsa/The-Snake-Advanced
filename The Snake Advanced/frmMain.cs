@@ -11,17 +11,27 @@ namespace The_Snake_Advanced
         laws law { get; set; }
         public bool gameOver { get; set; }
         CSnake snake;
+        Color bodyColor;
+        enum number { zero, one , two ,three ,four, five , six , seven , eight , nine };
+        number counterStarFood = number.zero;
         //Constructor Form frmMain
         public FrmMain(FrmHome frmHome)
         {
             InitializeComponent();
-            panelSetting.Visible = false;
+            //panelSetting.Visible = false;
             this.Focus();
             frmHome.playAgain = false;
             this.frmHome = frmHome;
             gameOver = false;
-            snake= new CSnake(this, new Point(50, 50), new Size(10, 10), Color.Green, Keys.Right);
-            timerMoveSnake.Enabled = true;
+            coBoxLaw.SelectedIndex = 0;
+            coBoxSnakeColor.SelectedIndex = 0;
+            coBoxBackGroundColor.SelectedIndex = 0;
+            bodyColor=Color.Green;
+            this.BackColor=Color.LightGreen;
+            menuStrip.Enabled = false;
+            timerShiftStarFood.Interval = 1000;
+            counterStarFood = counterStarFood + 1;
+            snake = new CSnake(this, new Point(50, 50), new Size(10, 10), Color.Green, Keys.Right);
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -52,6 +62,21 @@ namespace The_Snake_Advanced
                     Application.Exit();
                 }
             }
+        }
+
+        private void BtnPlay_Click(object sender, EventArgs e)
+        {
+            law =(laws) coBoxLaw.SelectedIndex;
+
+            panelSetting.Visible = false;
+            menuStrip.Enabled = true;
+
+            timerMoveSnake.Interval = 250-(trBarSnakeSpeed.Value*40);
+            timerShiftFood.Interval = trBarSnakeSpeed.Value*2000;
+
+            timerShiftFood.Enabled = !chBoxWall.Checked;
+            timerShiftStarFood.Enabled = true;
+            timerMoveSnake.Enabled = true;
         }
     }
 }

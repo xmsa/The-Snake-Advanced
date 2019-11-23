@@ -57,6 +57,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBarLevel = new System.Windows.Forms.ProgressBar();
             this.timerMoveSnake = new System.Windows.Forms.Timer(this.components);
+            this.timerShiftFood = new System.Windows.Forms.Timer(this.components);
+            this.timerShiftStarFood = new System.Windows.Forms.Timer(this.components);
             this.panelSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trBarFoodShiftSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarFoodSize)).BeginInit();
@@ -101,11 +103,18 @@
             this.btnPlay.TabIndex = 3;
             this.btnPlay.Text = "Play";
             this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.BtnPlay_Click);
             // 
             // coBoxLaw
             // 
+            this.coBoxLaw.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.coBoxLaw.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
             this.coBoxLaw.FormattingEnabled = true;
+            this.coBoxLaw.Items.AddRange(new object[] {
+            "Overfly",
+            "Cuting Snake",
+            "Not Cutting Snake",
+            "Return On Snake"});
             this.coBoxLaw.Location = new System.Drawing.Point(3, 200);
             this.coBoxLaw.Name = "coBoxLaw";
             this.coBoxLaw.Size = new System.Drawing.Size(194, 34);
@@ -113,8 +122,13 @@
             // 
             // coBoxSnakeColor
             // 
+            this.coBoxSnakeColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.coBoxSnakeColor.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
             this.coBoxSnakeColor.FormattingEnabled = true;
+            this.coBoxSnakeColor.Items.AddRange(new object[] {
+            "Green",
+            "Red",
+            "Blue"});
             this.coBoxSnakeColor.Location = new System.Drawing.Point(3, 98);
             this.coBoxSnakeColor.Name = "coBoxSnakeColor";
             this.coBoxSnakeColor.Size = new System.Drawing.Size(194, 34);
@@ -122,8 +136,13 @@
             // 
             // coBoxBackGroundColor
             // 
+            this.coBoxBackGroundColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.coBoxBackGroundColor.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
             this.coBoxBackGroundColor.FormattingEnabled = true;
+            this.coBoxBackGroundColor.Items.AddRange(new object[] {
+            "Red",
+            "Blue",
+            "Green"});
             this.coBoxBackGroundColor.Location = new System.Drawing.Point(3, 32);
             this.coBoxBackGroundColor.Name = "coBoxBackGroundColor";
             this.coBoxBackGroundColor.Size = new System.Drawing.Size(194, 34);
@@ -373,7 +392,6 @@
         private System.Windows.Forms.TrackBar trBarFoodShiftSpeed;
         private System.Windows.Forms.TrackBar trBarFoodSize;
         private System.Windows.Forms.TrackBar trBarSnakeSize;
-        private System.Windows.Forms.ComboBox coBoxLaw;
         private System.Windows.Forms.ComboBox coBoxSnakeColor;
         private System.Windows.Forms.ComboBox coBoxBackGroundColor;
         private System.Windows.Forms.CheckBox chBoxWall;
@@ -387,6 +405,9 @@
         private System.Windows.Forms.ProgressBar progressBarLevel;
         private System.Windows.Forms.CheckBox chBoxFoodShiftSpeed;
         private System.Windows.Forms.Timer timerMoveSnake;
+        private System.Windows.Forms.ComboBox coBoxLaw;
+        private System.Windows.Forms.Timer timerShiftFood;
+        private System.Windows.Forms.Timer timerShiftStarFood;
     }
 }
 
