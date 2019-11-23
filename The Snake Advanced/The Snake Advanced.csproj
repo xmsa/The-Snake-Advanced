@@ -107,7 +107,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\FoodHeart.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -120,6 +120,27 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FoodA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FoodB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FoodC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FoodD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FoodE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FoodF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FoodG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,25 +18,68 @@ namespace The_Snake_Advanced
         FrmMain frmMain { get; set; }
         Point _locationHead;
         public Point locationHead { get { return _locationHead; } }
-        Size size { get; set; }
-        Color color { get; set; }
+        Size _size;
+        public Size size
+        {
+            get
+            {
+                return _size;
+            }
+            set
+            {
+                this._size = value;
+                int len = body.Count;
+                if (len != 0)
+                {
+                    _locationHead = new Point(300, 300);
+                    foreach (var item in body)
+                    {
+                        frmMain.Controls.Remove(item);
+                    }
+                    body = new List<PictureBox>();
+                    for (int i = 0; i < len; i++)
+                    {
+                        AddBody(FrmMain.laws.Overfly);
+                    }
+                }
+            }
+        }
+        Color _color;
+        public Color color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                this._color = value;
+                for (int i = 0; i < body.Count - 1; i++)
+                {
+                    body[i].BackColor = color;
+                }
+            }
+        }
         List<PictureBox> body { get; set; }
         Keys key;
 
         public CSnake(FrmMain frmMain, Point locationStart, Size size, Color color, Keys key)
         {
+            body = new List<PictureBox>();
             this.frmMain = frmMain;
             this._locationHead = locationStart;
             this.size = size;
             this.color = color;
             this.key = key;
-            body = new List<PictureBox>();
+            AddBody(FrmMain.laws.Overfly);
+            AddBody(FrmMain.laws.Overfly);
+            AddBody(FrmMain.laws.Overfly);
             AddBody(FrmMain.laws.Overfly);
         }
 
-        public void MoveSnake(FrmMain.laws law)
+        public void MoveSnake(FrmMain.laws law, bool wall = false)
         {
-            AddBody(law);
+            AddBody(law, wall);
 
             if (frmMain.gameOver)
                 return;
@@ -51,12 +94,14 @@ namespace The_Snake_Advanced
             }
         }
 
-        public void AddBody(FrmMain.laws law)
+        public void AddBody(FrmMain.laws law, bool wall = false)
         {
 
             _locationHead = SetLocationHead(law);
-
-            LowWall(_locationHead);
+            if (wall)
+            {
+                LowWall(_locationHead);
+            }
 
             if (frmMain.gameOver)
             {
@@ -77,7 +122,7 @@ namespace The_Snake_Advanced
 
         private Point SetLocationHead(FrmMain.laws law)
         {
-            Point location = locationHead;
+            Point location = NextLocation(locationHead);
 
             switch (law)
             {
@@ -99,7 +144,6 @@ namespace The_Snake_Advanced
 
         private Point LowReturnOnSnake(Point location)
         {
-            location = LowOverfly(location);
             if ((location.X < 0) ||
                 (location.Y < frmMain.Height) ||
                 (location.X < frmMain.Width) ||
@@ -107,7 +151,7 @@ namespace The_Snake_Advanced
             {
                 key = SwitchKey(key);
             }
-            return LowOverfly(location);
+            return NextLocation(location);
         }
 
         private Keys SwitchKey(Keys key)
@@ -129,7 +173,6 @@ namespace The_Snake_Advanced
 
         private Point LowNoCuttingSnake(Point location)
         {
-            location = LowOverfly(location);
             int indexBody = Colision(location);
             if (indexBody < 0)
             {
@@ -163,7 +206,6 @@ namespace The_Snake_Advanced
 
         private Point LowCuttingSnake(Point location)
         {
-            location = LowOverfly(location);
             int indexBody = Colision(location);
             if (indexBody < 0)
             {
@@ -176,7 +218,7 @@ namespace The_Snake_Advanced
             return location;
         }
 
-        private Point LowOverfly(Point location)
+        private Point NextLocation(Point location)
         {
             switch (key)
             {
@@ -195,13 +237,26 @@ namespace The_Snake_Advanced
             }
             return location;
         }
-        public void SetColorBody(Color color)
+
+        private Point LowOverfly(Point location)
         {
-            this.color = color;
-            for (int i = 0; i < body.Count-1; i++)
+            if (location.X < 0)
             {
-                body[i].BackColor = color;
+                location.X = frmMain.Width - size.Width;
             }
+            else if (location.Y > frmMain.Height)
+            {
+                location.X = 0;
+            }
+            else if (location.X > frmMain.Width)
+            {
+                location.X = 0;
+            }
+            else if (location.Y < 0)
+            {
+                location.X = frmMain.Height - size.Height;
+            }
+            return location;
         }
     }
 }

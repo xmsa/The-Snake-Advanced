@@ -159,6 +159,7 @@
             this.chBoxFoodShiftSpeed.Size = new System.Drawing.Size(15, 14);
             this.chBoxFoodShiftSpeed.TabIndex = 5;
             this.chBoxFoodShiftSpeed.UseVisualStyleBackColor = true;
+            this.chBoxFoodShiftSpeed.CheckedChanged += new System.EventHandler(this.ChBoxFoodShiftSpeed_CheckedChanged);
             // 
             // chBoxWall
             // 
@@ -260,6 +261,7 @@
             this.trBarFoodSize.Size = new System.Drawing.Size(194, 45);
             this.trBarFoodSize.TabIndex = 3;
             this.trBarFoodSize.Value = 3;
+            this.trBarFoodSize.ValueChanged += new System.EventHandler(this.TrBarFoodSize_ValueChanged);
             // 
             // trBarSnakeSize
             // 
@@ -270,6 +272,7 @@
             this.trBarSnakeSize.Size = new System.Drawing.Size(194, 45);
             this.trBarSnakeSize.TabIndex = 3;
             this.trBarSnakeSize.Value = 3;
+            this.trBarSnakeSize.ValueChanged += new System.EventHandler(this.TrBarSnakeSize_ValueChanged);
             // 
             // trBarSnakeSpeed
             // 

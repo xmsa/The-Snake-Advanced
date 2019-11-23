@@ -11,6 +11,8 @@ namespace The_Snake_Advanced
         laws law { get; set; }
         public bool gameOver { get; set; }
         CSnake snake;
+        CFood food;
+        CFood sFood;
         Color bodyColor;
         enum number { zero, one , two ,three ,four, five , six , seven , eight , nine };
         number counterStarFood = number.zero;
@@ -31,7 +33,12 @@ namespace The_Snake_Advanced
             menuStrip.Enabled = false;
             timerShiftStarFood.Interval = 1000;
             counterStarFood = counterStarFood + 1;
-            snake = new CSnake(this, new Point(50, 50), new Size(10, 10), Color.Red, Keys.Right);
+            snake = new CSnake(this, new Point(300, 300), 
+                new Size((trBarSnakeSize.Value+1)*5, (trBarSnakeSize.Value + 1) * 5
+                ), Color.Red, Keys.Right);
+            food = new CFood(this, new Size((trBarFoodSize.Value + 1) * 5, (trBarFoodSize.Value + 1) * 5));
+            sFood = new CFood(this, new Size(50,50), true);
+
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,7 +54,7 @@ namespace The_Snake_Advanced
 
         private void TimerMoveSnake_Tick(object sender, EventArgs e)
         {
-            snake.MoveSnake(law);
+            snake.MoveSnake(law ,chBoxWall.Checked);
             if (gameOver)
             {
                 timerMoveSnake.Enabled = false;
@@ -74,7 +81,7 @@ namespace The_Snake_Advanced
             timerMoveSnake.Interval = 250-(trBarSnakeSpeed.Value*40);
             timerShiftFood.Interval = trBarSnakeSpeed.Value*2000;
 
-            timerShiftFood.Enabled = !chBoxWall.Checked;
+            timerShiftFood.Enabled = !chBoxFoodShiftSpeed.Checked;
             timerShiftStarFood.Enabled = true;
             timerMoveSnake.Enabled = true;
         }
@@ -97,28 +104,44 @@ namespace The_Snake_Advanced
 
         private void CoBoxSnakeColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Color color=Color.White;
+            bodyColor=Color.White;
             switch (coBoxSnakeColor.SelectedItem)
             {
                 case "Red":
-                    color = Color.Red;
+                    bodyColor = Color.Red;
                     break;
                 case "Blue":
-                    color = Color.Blue;
+                    bodyColor = Color.Blue;
                     break;
                 case "Green":
-                    color = Color.Green;
+                    bodyColor = Color.Green;
                     break;
             }
             try
             {
-                snake.SetColorBody(color);
-
+                snake.color = bodyColor;
             }
             catch (Exception)
             {
 
             }
+        }
+
+        private void ChBoxFoodShiftSpeed_CheckedChanged(object sender, EventArgs e)
+        {
+            trBarFoodShiftSpeed.Enabled = !chBoxFoodShiftSpeed.Checked;
+        }
+
+        private void TrBarSnakeSize_ValueChanged(object sender, EventArgs e)
+        {
+            snake.size=new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5);
+        }
+
+        private void TrBarFoodSize_ValueChanged(object sender, EventArgs e)
+        {
+            //food.size= new Size((trBarFoodSize.Value + 1) * 5, (trBarFoodSize.Value + 1) * 5);
+            food.size = snake.size;
+             food.RandomLocation();
         }
     }
 }

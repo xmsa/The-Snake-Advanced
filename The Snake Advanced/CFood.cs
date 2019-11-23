@@ -15,25 +15,35 @@ namespace The_Snake_Advanced
     class CFood
     {
         FrmMain frmMain;
-        Size size { get; set; }
+        public Size size
+        {
+            get
+            {
+                return food.Size;
+            }
+            set
+            {
+                food.Size = value;
+            }
+        }
+        public Point location { get { return food.Location; } }
         public bool sFood { get; set; }
-        public PictureBox food { get; set; }
+
+        PictureBox food { get; set; }
 
         public CFood(FrmMain frmMain, Size size, bool sFood = false)
         {
             this.frmMain = frmMain;
-            this.size = size;
             this.sFood = sFood;
 
-            CreateFood();
+            CreateFood(size);
         }
 
-        void CreateFood()
+        void CreateFood(Size size)
         {
             food = new PictureBox();
             food.Size = size;
-
-            food.BackColor = Color.Red;
+            food.BackgroundImageLayout = ImageLayout.Zoom;
             RandomLocation();
             frmMain.Controls.Add(food);
         }
@@ -42,6 +52,39 @@ namespace The_Snake_Advanced
             Random rnd = new Random();
             int width = rnd.Next(1, (frmMain.Width / size.Width) - 1);
             int height = rnd.Next(1, ((frmMain.Height - 24) / size.Height) - 1);
+            food.BackColor = Color.Transparent;
+
+            if (sFood)
+            {
+                food.BackgroundImage = Properties.Resources.FoodHeart;
+            }
+            else
+            {
+                switch (rnd.Next(1,8))
+                {
+                    case 1:
+                        food.BackgroundImage = Properties.Resources.FoodA;
+                        break;
+                    case 2:
+                        food.BackgroundImage = Properties.Resources.FoodB;
+                        break;
+                    case 3:
+                        food.BackgroundImage = Properties.Resources.FoodC;
+                        break;
+                    case 4:
+                        food.BackgroundImage = Properties.Resources.FoodD;
+                        break;
+                    case 5:
+                        food.BackgroundImage = Properties.Resources.FoodE;
+                        break;
+                    case 6:
+                        food.BackgroundImage = Properties.Resources.FoodF;
+                        break;
+                    case 7:
+                        food.BackgroundImage = Properties.Resources.FoodG;
+                        break;
+                }
+            }
             food.Location = new Point(width * size.Width, height * size.Height);
         }
     }
