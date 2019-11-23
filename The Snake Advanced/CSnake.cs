@@ -61,7 +61,7 @@ namespace The_Snake_Advanced
             }
         }
         List<PictureBox> body { get; set; }
-        Keys key;
+        public Keys key { get; set; }
 
         public CSnake(FrmMain frmMain, Point locationStart, Size size, Color color, Keys key)
         {
@@ -246,7 +246,7 @@ namespace The_Snake_Advanced
             }
             else if (location.Y > frmMain.Height)
             {
-                location.X = 0;
+                location.Y = 0;
             }
             else if (location.X > frmMain.Width)
             {
@@ -254,7 +254,7 @@ namespace The_Snake_Advanced
             }
             else if (location.Y < 0)
             {
-                location.X = frmMain.Height - size.Height;
+                location.Y = frmMain.Height - size.Height;
             }
             return location;
         }

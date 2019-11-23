@@ -14,7 +14,7 @@ namespace The_Snake_Advanced
         CFood food;
         CFood sFood;
         Color bodyColor;
-        enum number { zero, one , two ,three ,four, five , six , seven , eight , nine };
+        enum number { zero, one, two, three, four, five, six, seven, eight, nine };
         number counterStarFood = number.zero;
         //Constructor Form frmMain
         public FrmMain(FrmHome frmHome)
@@ -28,16 +28,17 @@ namespace The_Snake_Advanced
             coBoxLaw.SelectedIndex = 0;
             coBoxSnakeColor.SelectedIndex = 0;
             coBoxBackGroundColor.SelectedIndex = 0;
-            bodyColor=Color.Green;
-            this.BackColor=Color.DarkRed;
+            bodyColor = Color.Green;
+            this.BackColor = Color.DarkRed;
             menuStrip.Enabled = false;
             timerShiftStarFood.Interval = 1000;
             counterStarFood = counterStarFood + 1;
-            snake = new CSnake(this, new Point(300, 300), 
-                new Size((trBarSnakeSize.Value+1)*5, (trBarSnakeSize.Value + 1) * 5
+            snake = new CSnake(this, new Point(300, 300),
+                new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5
                 ), Color.Red, Keys.Right);
-            food = new CFood(this, new Size((trBarFoodSize.Value + 1) * 5, (trBarFoodSize.Value + 1) * 5));
-            sFood = new CFood(this, new Size(50,50), true);
+            food = new CFood(this, new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5));
+            sFood = new CFood(this, new Size(snake.size.Width*2,snake.size.Height*2), true);
+            
 
         }
 
@@ -54,11 +55,11 @@ namespace The_Snake_Advanced
 
         private void TimerMoveSnake_Tick(object sender, EventArgs e)
         {
-            snake.MoveSnake(law ,chBoxWall.Checked);
+            snake.MoveSnake(law, chBoxWall.Checked);
             if (gameOver)
             {
                 timerMoveSnake.Enabled = false;
-                if (MessageBox.Show("Play Again","Game Over" ,MessageBoxButtons.YesNo , MessageBoxIcon.Error)==DialogResult.Yes)
+                if (MessageBox.Show("Play Again", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                 {
                     frmHome.playAgain = true;
                     this.Close();
@@ -73,17 +74,18 @@ namespace The_Snake_Advanced
 
         private void BtnPlay_Click(object sender, EventArgs e)
         {
-            law =(laws) coBoxLaw.SelectedIndex;
+            law = (laws)coBoxLaw.SelectedIndex;
 
             panelSetting.Visible = false;
             menuStrip.Enabled = true;
 
-            timerMoveSnake.Interval = 250-(trBarSnakeSpeed.Value*40);
-            timerShiftFood.Interval = trBarSnakeSpeed.Value*2000;
+            timerMoveSnake.Interval = 250 - (trBarSnakeSpeed.Value * 40);
+            timerShiftFood.Interval = trBarSnakeSpeed.Value * 2000;
 
             timerShiftFood.Enabled = !chBoxFoodShiftSpeed.Checked;
             timerShiftStarFood.Enabled = true;
             timerMoveSnake.Enabled = true;
+            this.Focus();
         }
 
         private void CoBoxBackGroundColor_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,7 +106,7 @@ namespace The_Snake_Advanced
 
         private void CoBoxSnakeColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bodyColor=Color.White;
+            bodyColor = Color.White;
             switch (coBoxSnakeColor.SelectedItem)
             {
                 case "Red":
@@ -134,14 +136,44 @@ namespace The_Snake_Advanced
 
         private void TrBarSnakeSize_ValueChanged(object sender, EventArgs e)
         {
-            snake.size=new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5);
+            snake.size = new Size((trBarSnakeSize.Value + 1) * 5, (trBarSnakeSize.Value + 1) * 5);
+            sFood.size = new Size (snake.size.Width*2, snake.size.Height*2);
+            sFood.RandomLocation();
+
         }
 
         private void TrBarFoodSize_ValueChanged(object sender, EventArgs e)
         {
             //food.size= new Size((trBarFoodSize.Value + 1) * 5, (trBarFoodSize.Value + 1) * 5);
             food.size = snake.size;
-             food.RandomLocation();
+            food.RandomLocation();
+        }
+
+        private void FrmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                case Keys.W:
+                case Keys.NumPad8:
+                    snake.key = (snake.key != Keys.Down) ? Keys.Up : Keys.Down;
+                    break;
+                case Keys.Down:
+                case Keys.S:
+                case Keys.NumPad2:
+                    snake.key = (snake.key != Keys.Up) ? Keys.Down : Keys.Up;
+                    break;
+                case Keys.Left:
+                case Keys.A:
+                case Keys.NumPad4:
+                    snake.key = (snake.key != Keys.Right) ? Keys.Left : Keys.Right;
+                    break;
+                case Keys.Right:
+                case Keys.D:
+                case Keys.NumPad6:
+                    snake.key = (snake.key != Keys.Left) ? Keys.Right : Keys.Left;
+                    break;
+            }
         }
     }
 }

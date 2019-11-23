@@ -41,10 +41,8 @@
             this.lblBackGroundColor = new System.Windows.Forms.Label();
             this.lblSnakeColor = new System.Windows.Forms.Label();
             this.lblFoodShiftSpeed = new System.Windows.Forms.Label();
-            this.lblFoodSize = new System.Windows.Forms.Label();
             this.lblSnakeSpeed = new System.Windows.Forms.Label();
             this.trBarFoodShiftSpeed = new System.Windows.Forms.TrackBar();
-            this.trBarFoodSize = new System.Windows.Forms.TrackBar();
             this.trBarSnakeSize = new System.Windows.Forms.TrackBar();
             this.trBarSnakeSpeed = new System.Windows.Forms.TrackBar();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
@@ -61,7 +59,6 @@
             this.timerShiftStarFood = new System.Windows.Forms.Timer(this.components);
             this.panelSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trBarFoodShiftSpeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trBarFoodSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarSnakeSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarSnakeSpeed)).BeginInit();
             this.menuStrip.SuspendLayout();
@@ -81,10 +78,8 @@
             this.panelSetting.Controls.Add(this.lblBackGroundColor);
             this.panelSetting.Controls.Add(this.lblSnakeColor);
             this.panelSetting.Controls.Add(this.lblFoodShiftSpeed);
-            this.panelSetting.Controls.Add(this.lblFoodSize);
             this.panelSetting.Controls.Add(this.lblSnakeSpeed);
             this.panelSetting.Controls.Add(this.trBarFoodShiftSpeed);
-            this.panelSetting.Controls.Add(this.trBarFoodSize);
             this.panelSetting.Controls.Add(this.trBarSnakeSize);
             this.panelSetting.Controls.Add(this.trBarSnakeSpeed);
             this.panelSetting.Dock = System.Windows.Forms.DockStyle.Right;
@@ -97,9 +92,9 @@
             // btnPlay
             // 
             this.btnPlay.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlay.Location = new System.Drawing.Point(3, 240);
+            this.btnPlay.Location = new System.Drawing.Point(3, 481);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(194, 31);
+            this.btnPlay.Size = new System.Drawing.Size(194, 92);
             this.btnPlay.TabIndex = 3;
             this.btnPlay.Text = "Play";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -154,7 +149,7 @@
             // 
             this.chBoxFoodShiftSpeed.AutoSize = true;
             this.chBoxFoodShiftSpeed.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
-            this.chBoxFoodShiftSpeed.Location = new System.Drawing.Point(173, 530);
+            this.chBoxFoodShiftSpeed.Location = new System.Drawing.Point(173, 434);
             this.chBoxFoodShiftSpeed.Name = "chBoxFoodShiftSpeed";
             this.chBoxFoodShiftSpeed.Size = new System.Drawing.Size(15, 14);
             this.chBoxFoodShiftSpeed.TabIndex = 5;
@@ -186,7 +181,7 @@
             // 
             this.lblSnakeSize.AutoSize = true;
             this.lblSnakeSize.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
-            this.lblSnakeSize.Location = new System.Drawing.Point(3, 274);
+            this.lblSnakeSize.Location = new System.Drawing.Point(3, 241);
             this.lblSnakeSize.Name = "lblSnakeSize";
             this.lblSnakeSize.Size = new System.Drawing.Size(76, 26);
             this.lblSnakeSize.TabIndex = 4;
@@ -216,27 +211,17 @@
             // 
             this.lblFoodShiftSpeed.AutoSize = true;
             this.lblFoodShiftSpeed.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
-            this.lblFoodShiftSpeed.Location = new System.Drawing.Point(3, 497);
+            this.lblFoodShiftSpeed.Location = new System.Drawing.Point(3, 401);
             this.lblFoodShiftSpeed.Name = "lblFoodShiftSpeed";
             this.lblFoodShiftSpeed.Size = new System.Drawing.Size(110, 26);
             this.lblFoodShiftSpeed.TabIndex = 4;
             this.lblFoodShiftSpeed.Text = "Food Shift Speed: ";
             // 
-            // lblFoodSize
-            // 
-            this.lblFoodSize.AutoSize = true;
-            this.lblFoodSize.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
-            this.lblFoodSize.Location = new System.Drawing.Point(3, 423);
-            this.lblFoodSize.Name = "lblFoodSize";
-            this.lblFoodSize.Size = new System.Drawing.Size(71, 26);
-            this.lblFoodSize.TabIndex = 4;
-            this.lblFoodSize.Text = "Food Size: ";
-            // 
             // lblSnakeSpeed
             // 
             this.lblSnakeSpeed.AutoSize = true;
             this.lblSnakeSpeed.Font = new System.Drawing.Font("Microsoft Uighur", 14.25F);
-            this.lblSnakeSpeed.Location = new System.Drawing.Point(3, 350);
+            this.lblSnakeSpeed.Location = new System.Drawing.Point(3, 317);
             this.lblSnakeSpeed.Name = "lblSnakeSpeed";
             this.lblSnakeSpeed.Size = new System.Drawing.Size(87, 26);
             this.lblSnakeSpeed.TabIndex = 4;
@@ -244,7 +229,7 @@
             // 
             // trBarFoodShiftSpeed
             // 
-            this.trBarFoodShiftSpeed.Location = new System.Drawing.Point(3, 526);
+            this.trBarFoodShiftSpeed.Location = new System.Drawing.Point(3, 430);
             this.trBarFoodShiftSpeed.Maximum = 6;
             this.trBarFoodShiftSpeed.Minimum = 1;
             this.trBarFoodShiftSpeed.Name = "trBarFoodShiftSpeed";
@@ -252,20 +237,9 @@
             this.trBarFoodShiftSpeed.TabIndex = 3;
             this.trBarFoodShiftSpeed.Value = 3;
             // 
-            // trBarFoodSize
-            // 
-            this.trBarFoodSize.Location = new System.Drawing.Point(3, 453);
-            this.trBarFoodSize.Maximum = 5;
-            this.trBarFoodSize.Minimum = 1;
-            this.trBarFoodSize.Name = "trBarFoodSize";
-            this.trBarFoodSize.Size = new System.Drawing.Size(194, 45);
-            this.trBarFoodSize.TabIndex = 3;
-            this.trBarFoodSize.Value = 3;
-            this.trBarFoodSize.ValueChanged += new System.EventHandler(this.TrBarFoodSize_ValueChanged);
-            // 
             // trBarSnakeSize
             // 
-            this.trBarSnakeSize.Location = new System.Drawing.Point(3, 303);
+            this.trBarSnakeSize.Location = new System.Drawing.Point(3, 270);
             this.trBarSnakeSize.Maximum = 5;
             this.trBarSnakeSize.Minimum = 1;
             this.trBarSnakeSize.Name = "trBarSnakeSize";
@@ -276,7 +250,7 @@
             // 
             // trBarSnakeSpeed
             // 
-            this.trBarSnakeSpeed.Location = new System.Drawing.Point(3, 379);
+            this.trBarSnakeSpeed.Location = new System.Drawing.Point(3, 346);
             this.trBarSnakeSpeed.Maximum = 6;
             this.trBarSnakeSpeed.Minimum = 1;
             this.trBarSnakeSpeed.Name = "trBarSnakeSpeed";
@@ -369,10 +343,10 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "The Snake";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);
             this.panelSetting.ResumeLayout(false);
             this.panelSetting.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trBarFoodShiftSpeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trBarFoodSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarSnakeSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarSnakeSpeed)).EndInit();
             this.menuStrip.ResumeLayout(false);
@@ -395,7 +369,6 @@
         private System.Windows.Forms.TrackBar trBarSnakeSpeed;
         private System.Windows.Forms.Label lblSnakeSpeed;
         private System.Windows.Forms.TrackBar trBarFoodShiftSpeed;
-        private System.Windows.Forms.TrackBar trBarFoodSize;
         private System.Windows.Forms.TrackBar trBarSnakeSize;
         private System.Windows.Forms.ComboBox coBoxSnakeColor;
         private System.Windows.Forms.ComboBox coBoxBackGroundColor;
@@ -405,7 +378,6 @@
         private System.Windows.Forms.Label lblBackGroundColor;
         private System.Windows.Forms.Label lblSnakeColor;
         private System.Windows.Forms.Label lblFoodShiftSpeed;
-        private System.Windows.Forms.Label lblFoodSize;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.ProgressBar progressBarLevel;
         private System.Windows.Forms.CheckBox chBoxFoodShiftSpeed;
